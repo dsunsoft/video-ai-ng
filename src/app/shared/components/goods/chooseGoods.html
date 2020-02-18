@@ -1,0 +1,91 @@
+<div class="modal-header">
+    <div class="modal-title">商品信息</div>
+</div>
+<div class="modal-body">
+    <div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+        <nz-card [nzBordered]="false">
+            <nz-col nzLg="24" nzMd="24" nzSm="24" nzXl="24" nzXXl="24">
+                <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+                    <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+                            <nz-form-item>
+                                <nz-form-label nzFor="goodsCode">商品编码</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input [(ngModel)]="query.goodsCode" name="goodsCode" placeholder="请输入"
+                                        id="goodsCode">
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+                            <nz-form-item>
+                                <nz-form-label nzFor="goodsName">商品名称</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input [(ngModel)]="query.goodsName" name="goodsName" placeholder="请输入"
+                                        id="goodsName">
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <!-- <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+                            <nz-form-item>
+                                <nz-form-label nzFor="type">类别</nz-form-label>
+                                <nz-form-control>
+                                    <dic [(type)]="goodsTypeId" [(dicId)]="query.goodsTypeId" [pid]="goodsTypePid"></dic>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+                            <nz-form-item>
+                                <nz-form-label nzFor="type">赠品</nz-form-label>
+                                <nz-form-control>
+                                    <nz-select [(ngModel)]="query.isGift" name="isGift" id="isGift" [nzPlaceHolder]="'请选择'" [nzAllowClear]="true">
+                                        <nz-option *ngFor="let i of isGiftList;" [nzLabel]="i.text" [nzValue]="i.value"></nz-option>
+                                    </nz-select>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+                            <nz-form-item>
+                                <nz-form-label nzFor="type">是否贴单</nz-form-label>
+                                <nz-form-control>
+                                    <nz-select [(ngModel)]="query.isStick" name="isStick" id="isStick" [nzPlaceHolder]="'请选择'" [nzAllowClear]="true">
+                                        <nz-option *ngFor="let i of isStickList;" [nzLabel]="i.text" [nzValue]="i.value"></nz-option>
+                                    </nz-select>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col> -->
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+                            <nz-form-item>
+                                <nz-form-label nzFor="status">状态</nz-form-label>
+                                <nz-form-control>
+                                    <nz-select [(ngModel)]="query.useFlag" name="useFlag" id="useFlag"
+                                        [nzPlaceHolder]="'请选择'" [nzAllowClear]="true">
+                                        <nz-option *ngFor="let i of useFlagList;" [nzLabel]="i.text"
+                                            [nzValue]="i.value"></nz-option>
+                                    </nz-select>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6" [class.text-right]="true">
+                            <nz-form-item>
+                                <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+                                <button nz-button type="reset" (click)="reset()">重置</button>
+                            </nz-form-item>
+                        </nz-col>
+                    </nz-row>
+                </form>
+                <st #st [columns]="columns" [data]="data" [pi]="query.pageIndex" [ps]="query.pageSize"
+                    [total]="query.total" [page]="ST_PAGE" [loading]="loading" (change)="stChange($event)">
+                    <ng-template st-row="goodsName" let-i>
+                        <span nz-tooltip [nzTitle]="i.longGoodsName" nzPlacement="right">{{i.goodsName}}</span>
+                    </ng-template>
+                </st>
+            </nz-col>
+        </nz-card>
+    </div>
+</div>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">关闭</button>
+    <button nz-button type="button" [nzType]="'primary'" (click)="submit()"
+        [disabled]="selectedRows == null || (selectedRows != null && selectedRows.length == 0)">确认</button>
+</div>

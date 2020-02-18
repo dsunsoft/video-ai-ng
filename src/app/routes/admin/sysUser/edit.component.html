@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <div class="modal-title">用户信息</div>
+</div>
+<div class="modal-body">
+  <form nz-form #form="ngForm" se-container size="compact" gutter="24">
+    <se label="归属公司" required>
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton1">
+        <input type="text" nz-input [(ngModel)]="sysUser.company.name" name="companyName"  required readonly>
+        <input type="hidden" [(ngModel)]="sysUser.company.id" name="companyId" />
+      </nz-input-group>
+      <ng-template #suffixIconButton1>
+        <button nz-button type="button" nzType="primary" (click)="selectCompany()" nzSearch>
+          <i nz-icon type="search"></i>
+        </button>
+      </ng-template>
+    </se> 
+    <se label="归属部门" required>
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton2">
+          <input type="text" nz-input [(ngModel)]="sysUser.office.name" name="officeName" required readonly>
+          <input type="hidden" [(ngModel)]="sysUser.office.id" name="officeId" />
+        </nz-input-group>
+        <ng-template #suffixIconButton2>
+          <button nz-button type="button" nzType="primary" (click)="selectOffice()" nzSearch>
+            <i nz-icon type="search"></i>
+          </button>
+        </ng-template>
+      </se>
+    <se label="工号" required>
+      <input type="text" nz-input [(ngModel)]="sysUser.no" name="no" required>
+    </se>
+    <se label="姓名" required>
+      <input type="text" nz-input [(ngModel)]="sysUser.name" name="name" required>
+    </se>
+    <se label="登录名" required>
+        <input type="text" nz-input [(ngModel)]="sysUser.loginName" name="loginName" required [readonly]="sysUser.loginName == 'admin'">
+    </se>
+    <se label="角色" required>
+        <nz-checkbox-group [(ngModel)]="checkOptions" required name="role" (ngModelChange)="updateSingleChecked()"></nz-checkbox-group>
+    </se>
+    <se label="密码" [required]="sysUser.id == null">
+      <input type="password" nz-input [(ngModel)]="sysUser.newPassword" name="newPassword" [required]="sysUser.id == null">
+    </se>
+    <se label="确认密码" [required]="sysUser.id == null">
+      <input type="password" nz-input [(ngModel)]="sysUser.confirmPassword" name="confirmPassword" [required]="sysUser.id == null">
+    </se>
+    <se label="邮箱" >
+      <input type="text" nz-input [(ngModel)]="sysUser.email" name="email" >
+    </se>
+    <se label="电话" >
+      <input type="text" nz-input [(ngModel)]="sysUser.phone" name="phone" >
+    </se>
+    <se label="手机" >
+      <input type="text" nz-input [(ngModel)]="sysUser.mobile" name="mobile" >
+    </se>
+    <se label="是否允许登录" required>
+      <!-- <input type="text" nz-input [(ngModel)]="sysUser.loginFlag" name="sysUser.loginFlag" required> -->
+      <nz-select [(ngModel)]="sysUser.loginFlag" name="loginFlag" nzAllowClear nzPlaceHolder="请选择" required>
+        <nz-option *ngFor="let op of SHI_FOU;" [nzValue]="op.value" [nzLabel]="op.text"></nz-option>
+      </nz-select>
+    </se>
+    <se label="备注信息" col="1">
+      <textarea [(ngModel)]="sysUser.remarks" name="remarks" nz-input rows="2" placeholder="备注信息"></textarea>
+    </se>
+    <se label="头像" col="1">
+        <div class="avatar" *ngIf="sysUser.photo && sysUser.photo != null"><img src="{{FILE_URL}}{{sysUser.photo}}" alt="头像"></div>
+        <nz-upload [nzAction]="fileUploadUrl" [nzShowUploadList]="false"  (nzChange)="fileUpload($event)">
+          <button nz-button class="button_view">
+            <i nz-icon type="upload"></i>
+            <span>更换头像</span>
+          </button>
+        </nz-upload>
+    </se>
+  </form>
+</div>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

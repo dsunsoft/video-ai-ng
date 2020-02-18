@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <div class="modal-title">数据字典信息</div>
+</div>
+<div class="modal-body">
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="类型" required  col="1">
+    <input type="text" nz-input [(ngModel)]="record.type" name="type" required>
+  </se>
+  <se label="描述" required  col="1">
+    <input type="text" nz-input [(ngModel)]="record.description" name="description" required>
+  </se>
+</form>
+</div>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <div class="modal-title">配送区域</div>
+</div>
+<div class="modal-body">
+    <nz-tabset [(nzSelectedIndex)]="nzSelectedIndex" [nzTabPosition]="'top'" nzSize="'small'">
+        <nz-tab nzTitle="全部区域">
+            <ng-container *ngFor="let item of sysAreas;let i = index;">
+                <div style="width: 33%;float: left;">
+                    <nz-checkbox-wrapper style="width: 100%;">
+                        <div nz-row>
+                            <div nz-col nzSpan="24">
+                                <label nz-checkbox nzValue="item.value" [(ngModel)]="item.checked"
+                                    (ngModelChange)="checkSysChange($event,i)">{{item.text}}</label>
+                            </div>
+                        </div>
+                    </nz-checkbox-wrapper>
+                </div>
+            </ng-container>
+        </nz-tab>
+        <nz-tab nzTitle="自定义区域">
+            <ng-container *ngFor="let item of customArea;let i = index;">
+                <div style="width: 90%;float: left;">
+                    <nz-checkbox-wrapper style="width: 100%;">
+                        <div nz-row>
+                            <div nz-col nzSpan="24">
+                                <label nz-checkbox nzValue="item.value" [(ngModel)]="item.checked"
+                                    (ngModelChange)="checkChange($event,i)">{{item.text}}</label>
+                            </div>
+                        </div>
+                    </nz-checkbox-wrapper>
+                </div>
+            </ng-container>
+        </nz-tab>
+    </nz-tabset>
+</div>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">关闭</button>
+    <button nz-button type="button" [nzType]="'primary'" (click)="submit()">确认</button>
+</div>

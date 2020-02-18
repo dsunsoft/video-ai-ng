@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <div class="modal-title">机构信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="上级机构" required col="1">
+    <input type="hidden" nz-input [(ngModel)]="sysOffice.parentId" name="parentId"  required>
+    <input type="text" nz-input [(ngModel)]="sysOffice.parentName" name="parentName" disabled readonly required>
+  </se>
+  <se label="机构名称" required>
+    <input type="text" nz-input [(ngModel)]="sysOffice.name" name="name" required>
+  </se>
+  <se label="机构编码" required>
+    <input type="text" nz-input [(ngModel)]="sysOffice.code" name="code" required>
+  </se>
+  <se label="机构类型" required>
+    <!-- <input type="text" nz-input [(ngModel)]="sysOffice.type" name="type" required> -->
+    <dic [(type)]="typeValue" [(dicId)]="sysOffice.type" [required]="true" (onSelectChange)="onSelectTypeChange($event)"></dic>
+  </se>
+  <se label="机构等级" required>
+    <!-- <input type="text" nz-input [(ngModel)]="sysOffice.grade" name="grade" required> -->
+    <dic [(type)]="gradeValue" [(dicId)]="sysOffice.grade" [required]="true" (onSelectChange)="onSelectGradeChange($event)"></dic>
+  </se>
+  <se label="是否可用" required>
+    <!-- <input type="text" nz-input [(ngModel)]="sysOffice.useable" name="useable" required> -->
+    <nz-select [(ngModel)]="sysOffice.useable" name="useable" nzAllowClear nzPlaceHolder="请选择" required>
+      <nz-option *ngFor="let op of SHI_FOU;" [nzValue]="op.value" [nzLabel]="op.text"></nz-option>
+    </nz-select>
+  </se>
+  <se label="排序" required>
+    <input type="text" nz-input [(ngModel)]="sysOffice.sort" name="sort" required>
+  </se>
+  <se label="主负责人">
+    <input type="text" nz-input [(ngModel)]="sysOffice.primaryPerson" name="primaryPerson">
+  </se>
+  <se label="副负责人">
+    <input type="text" nz-input [(ngModel)]="sysOffice.deputyPerson" name="deputyPerson">
+  </se>
+  <se label="联系地址">
+    <input type="text" nz-input [(ngModel)]="sysOffice.address" name="address">
+  </se>
+  <se label="邮政编码">
+    <input type="text" nz-input [(ngModel)]="sysOffice.zipCode" name="zipCode">
+  </se>
+  <se label="负责人">
+    <input type="text" nz-input [(ngModel)]="sysOffice.master" name="master">
+  </se>
+  <se label="电话">
+    <input type="text" nz-input [(ngModel)]="sysOffice.phone" name="phone">
+  </se>
+  <se label="传真">
+    <input type="text" nz-input [(ngModel)]="sysOffice.fax" name="fax">
+  </se>
+  <se label="邮箱">
+    <input type="text" nz-input [(ngModel)]="sysOffice.email" name="email">
+  </se>
+  <se label="备注" >
+    <input type="text" nz-input [(ngModel)]="sysOffice.remarks" name="remarks" >
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid || sysOffice.grade == null || sysOffice.type == null">保存</button>
+</div>

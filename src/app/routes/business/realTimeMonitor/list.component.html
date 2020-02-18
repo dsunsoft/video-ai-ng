@@ -1,0 +1,100 @@
+<!-- <page-header [title]="'实时数据'"></page-header> -->
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24">
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="search()" class="search__form">
+        <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <!--
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="deviceNo">设备编码</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.deviceNo" name="deviceNo" placeholder="请输入" id="deviceNo">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="deviceName">设备名称</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.deviceName" name="deviceName" placeholder="请输入" id="deviceName">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          -->
+          <!-- <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+              <nz-radio-group [(ngModel)]="query.radioValue" (ngModelChange)="radioChange($event)">
+                  <label nz-radio-button [nzValue]="1">图表</label>
+                  <label nz-radio-button [nzValue]="2">表格</label>
+              </nz-radio-group>
+          </nz-col> -->
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="8" nzXXl="6">
+            <nz-form-item>
+              <nz-form-label nzFor="deviceType">设备类型</nz-form-label>
+              <nz-form-control>
+                <nz-select  [nzMode]="'multiple'" [(ngModel)]="query.deviceType" name="deviceType"
+                 nzAllowClear nzPlaceHolder="请选择" id="deviceType" [nzMaxTagCount]="3"
+                 (ngModelChange)="resetColumns()">
+                  <nz-option *ngFor="let op of DEVICE_RANGE_TYPE;" [nzValue]="op.value" [nzLabel]="op.text"></nz-option>
+                  <!-- <ng-container *ngFor="let op of DEVICE_RANGE_TYPE">
+                    <nz-option [nzLabel]="op.text" [nzValue]="op.value" *ngIf="isNotSelected(op.value)"></nz-option>
+                  </ng-container> -->
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+              <nz-select  [(ngModel)]="query.type" name="type" nzAllowClear nzPlaceHolder="请选择" id="type" (ngModelChange)="setTime($event)">
+                  <nz-option [nzValue]="1" [nzLabel]="'过去一小时'"></nz-option>
+                  <nz-option [nzValue]="2" [nzLabel]="'过去一天'"></nz-option>
+                  <nz-option [nzValue]="3" [nzLabel]="'过去一周'"></nz-option>
+                  <nz-option [nzValue]="4" [nzLabel]="'过去一个月'"></nz-option>
+              </nz-select>
+              <!-- <button nz-button type="button" [nzType]="query.type == 1?'primary':'default'" [nzLoading]="loading" (click)="setTime(1)">过去一小时</button>
+              <button nz-button type="button" [nzType]="query.type == 2?'primary':'default'" [nzLoading]="loading" (click)="setTime(2)">过去一天</button>
+              <button nz-button type="button" [nzType]="query.type == 3?'primary':'default'" [nzLoading]="loading" (click)="setTime(3)">过去一周</button>
+              <button nz-button type="button" [nzType]="query.type == 4?'primary':'default'" [nzLoading]="loading" (click)="setTime(4)">过去一个月</button> -->
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+              <nz-form-item>
+                <nz-form-label nzFor="startTime">上报时间</nz-form-label>
+                <nz-form-control>
+                  <nz-date-picker name="startTime" id="startTime" nzFormat="yyyy-MM-dd HH:mm:ss" [nzPlaceHolder]="'开始'"
+                    [(ngModel)]="query.startTime"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+              <nz-form-item>
+                <nz-form-label nzFor="endTime">至</nz-form-label>
+                <nz-form-control>
+                  <nz-date-picker name="endTime" id="endTime" nzFormat="yyyy-MM-dd HH:mm:ss" [nzPlaceHolder]="'结束'"
+                    [(ngModel)]="query.endTime"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4" [class.text-right]="true">
+              <nz-form-item>
+                  <nz-radio-group name="radioValue" [(ngModel)]="query.radioValue" (ngModelChange)="radioChange($event)">
+                      <label nz-radio-button [nzValue]="1">图表</label>
+                      <label nz-radio-button [nzValue]="2">表格</label>
+                  </nz-radio-group>
+                <button style="margin-left: 0.3rem;" nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+                <!-- <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button> -->
+              </nz-form-item>
+            </nz-col>
+        </nz-row>
+      </form>
+      <nz-row *ngIf="query.radioValue == 1" [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <nz-col nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="12" *ngFor="let options of allOptions;">
+            <div echarts [options]="options"></div>
+          </nz-col>
+      </nz-row>
+      
+      <st *ngIf="query.radioValue == 2"
+       #st [columns]="columns" [data] ="data"  [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE" [loading]="loading" (change)="stChange($event)"
+        >
+      </st>
+    </nz-col>
+  </nz-card>
+</div>

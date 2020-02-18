@@ -1,0 +1,259 @@
+/****************************************************************************************************/
+/***整体样式，颜色，border 修改开始**/
+.ant-input,
+.ant-btn,
+.ant-select-selection,
+.ant-select-dropdown {
+  border-radius: 0px;
+}
+.ant-input:hover,
+.ant-input:focus,
+.ant-select-selection:hover,
+.ant-select-selection:focus,
+.ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
+  border-color: #26d7eb;
+}
+.se__control {
+  flex: 1;
+}
+.ant-btn-primary,
+.ant-checkbox-checked .ant-checkbox-inner {
+  color: #fff;
+  background-color: #00cede;
+  border-color: #00cede;
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  color: #fff;
+  background-color: #26d7eb;
+  border-color: #26d7eb;
+}
+.setting-drawer__handle {
+  border-radius: 0px;
+  background-color: #26d7eb;
+}
+a {
+  color: #00cede;
+}
+a:hover {
+  color: #26d7eb;
+}
+.head-badge {
+  width: 50px;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #262626;
+}
+.ant-input-group-addon .ant-btn {
+  height: 30px;
+}
+.ant-tree li {
+  cursor: pointer;
+}
+.ant-table {
+  border: 1px solid #e6ebef;
+}
+.ant-table-thead > tr > th {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  text-align: left;
+  background: #f5f6fb;
+  border-bottom: 1px solid #e1e6eb;
+  transition: background 0.3s ease;
+}
+.modal-header,
+.modal-footer {
+  background: #f5f6fb;
+  border-radius: 0;
+}
+.ant-table-tbody > tr > td > a {
+  display: inline-block;
+  min-width: 1.8rem;
+}
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 0.6rem 0.25rem;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters,
+.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters {
+  padding-right: 0px !important;
+}
+.search__form .ant-form-item > .ant-form-item-label {
+  background: #eaedf1;
+  color: rgba(0, 0, 0, 0.85);
+  padding-left: 0.2rem !important;
+}
+.st {
+  margin-top: 0.2rem;
+}
+.ant-tabs-ink-bar {
+  background-color: #00cede;
+}
+.ant-tabs-nav .ant-tabs-tab-active .ant-badge .head-badge {
+  color: #00cede;
+}
+.page-header .ant-tabs {
+  margin: -7px 0 -17px -15px;
+}
+.ant-checkbox-indeterminate .ant-checkbox-inner:after {
+  background-color: #00cede;
+}
+.ant-checkbox-checked .ant-checkbox-inner:hover {
+  border: solid #26d7eb 1px;
+}
+.search__form .ant-form-item {
+  margin-bottom: 10px;
+  max-height: 32px;
+}
+.modal-header {
+  margin: -24px -24px 4px -24px;
+  padding: 12px 10px;
+}
+.modal-header,
+.modal-footer {
+  background: #f5f6fb;
+  border-radius: 0;
+}
+.modal-footer {
+  margin: 5px -24px -24px -24px;
+}
+@media (min-width: 1200px) {
+  .ant-col-xl-6 {
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+  .ant-col-xl-12 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+@media (min-width: 1600px) {
+  .ant-col-xxl-12 {
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+}
+/***整体样式，颜色，border 修改结束**/
+/****************************************************************************************************/
+/****************************************************************************************************/
+/***布局修改开始**/
+.alain-default__fixed .alain-default__content {
+  margin-top: 64px;
+}
+.alain-default__content {
+  margin-left: 200px;
+}
+.alain-default__collapsed .alain-default__content {
+  margin-left: 65px;
+}
+.page-header__detail {
+  display: none;
+}
+.page-header .ant-breadcrumb {
+  margin-bottom: 10px;
+}
+.alain-default .page-header {
+  padding: 6px 20px 0px 20px;
+  margin-right: -24px;
+  margin-left: 0px;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #efe3e5;
+  background-color: #eaedf1;
+}
+.alain-default__header,
+.alain-default__aside {
+  background-color: #252a2f;
+}
+.sidebar-nav__item-link {
+  color: #ffffff;
+}
+.sidebar-nav__selected {
+  border-left-color: #00c1de;
+  background-color: #32363a;
+}
+.sidebar-nav__selected > .sidebar-nav__item-link {
+  color: #00c1de;
+}
+.sidebar-nav__selected > .sidebar-nav__item-link:hover {
+  color: #26d7eb;
+}
+ul.sidebar-nav > li.sidebar-nav__selected > ul.sidebar-nav > .sidebar-nav__selected,
+.sidebar-nav__floating-container ul.sidebar-nav > li.sidebar-nav__selected {
+  background-color: #54585f;
+}
+.alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item-link {
+  padding: 8px 16px;
+}
+.sidebar-nav__floating {
+  left: 63px !important;
+  border: 1px solid #32363a;
+  background-color: #32363a;
+  border-radius: 0;
+}
+.ant-card-body {
+  padding: 5px;
+  background: #ffffff;
+}
+.py-lg {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+.search__form .ant-form-item {
+  margin-bottom: 10px;
+}
+.alain-default__fixed .reuse-tab {
+  position: fixed;
+  top: 64px;
+  left: 200px;
+  right: 0px;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+}
+.alain-default__collapsed .reuse-tab {
+  left: 64px !important;
+}
+.reuse-tab .ant-tabs-nav .ant-tabs-tab {
+  padding: 0;
+  margin: 0 5px 0 0;
+}
+.reuse-tab .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  margin: 0;
+  font-size: 10px;
+}
+.alain-default__fixed .reuse-tab + router-outlet {
+  height: 35px;
+}
+.alain-default__header-logo {
+  width: 300px;
+}
+/***布局修改结束**/
+/****************************************************************************************************/
+/******直播*****/
+.video-page {
+  padding: 0.35rem;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+.margin-left-0 {
+  margin-left: 0 !important;
+}
+.margin-right-0 {
+  margin-right: 0 !important;
+}
+.padding-left-035 {
+  padding-left: 0.35rem !important;
+}
+.padding-right-035 {
+  padding-right: 0.35rem !important;
+}

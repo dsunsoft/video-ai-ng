@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <div class="modal-title">菜单信息</div>
+</div>
+<div class="modal-body">
+    <nz-tree 
+    #nzTree
+    [nzData]="treeNodes" 
+    [nzMultiple]="query.multiple?true:false" 
+    [nzSelectedKeys]="nzSelectedKeys"
+    [nzAsyncData]="false"
+    [nzShowIcon]="true"
+    (nzClick)="activeNode($event)" 
+    >
+    <ng-template #nzTreeTemplate let-node>
+        <span class="custom-node" [class.active]="activedNode?.key===node.key">
+          <span>
+            <label nz-checkbox 
+             [(ngModel)]="node.isSelected"></label>
+            <i nz-icon [type]="node.isExpanded ? 'folder-open' : 'folder'"></i>
+            <span class="folder-name">{{node.title}}</span>
+            <span class="folder-desc">({{node.children.length}})</span>
+          </span>
+        </span>
+      </ng-template>
+    </nz-tree>
+</div>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">关闭</button>
+    <button nz-button type="button" [nzType]="'primary'" (click)="submit()" [disabled]="selectedNode == null || (selectedNode != null && selectedNode.length == 0)">确认</button>
+</div>

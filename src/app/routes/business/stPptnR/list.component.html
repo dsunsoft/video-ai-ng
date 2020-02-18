@@ -1,0 +1,47 @@
+<!--
+/**
+ * 描述:[ST_PPTN_R][降水量表]表的列表页面
+ * @version:1.0.0
+ * @author:  administrator
+ * @创建时间: ${date}
+ */
+ -->
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24">
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+        <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="stcd">测站编码</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.stcd" name="stcd" placeholder="请输入" id="stcd">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="stnm">测站名称</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.stnm" name="stnm" placeholder="请输入" id="stnm">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+            <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+              <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+      </form>
+      <!-- <button nz-button (click)="add()" [nzType]="'primary'">
+        <i nz-icon type="plus"></i>
+        <span>新建</span>
+      </button> -->
+      <st #st [columns]="columns" [data]="data" [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE"
+        [loading]="loading" (change)="stChange($event)">
+      </st>
+    </nz-col>
+  </nz-card>
+</div>

@@ -1,0 +1,66 @@
+<div nz-row [nzGutter]="24" class="pt-lg margin-left-0 margin-right-0">
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'监测点'" [bordered]="true" [total]="indexCount.deviceCount?indexCount.deviceCount:'0'" contentHeight="30px"  
+      [avatar]="avatar1" [action]="action1" (click)="toPage(1)">
+      <ng-template #avatar1><img style="width:56px; height: 56px" src="./assets/img/1.png"/></ng-template>
+      <ng-template #action1>
+        <i nz-tooltip nzTooltipTitle="监测点" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'视频'" [bordered]="true" [total]="indexCount.videoStationCount?indexCount.videoStationCount:'0'" contentHeight="30px"  
+      [avatar]="avatar2" [action]="action2" (click)="toPage(2)">
+      <ng-template #avatar2><img style="width:56px; height: 56px" src="./assets/img/2.png"/></ng-template>
+      <ng-template #action2>
+        <i nz-tooltip nzTooltipTitle="视频" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'监测指标'" [bordered]="true" [total]="indexCount.waterQualityRangeCount?indexCount.waterQualityRangeCount:'0'" contentHeight="30px"  
+      [avatar]="avatar3" [action]="action3" (click)="toPage(3)">
+      <ng-template #avatar3><img style="width:56px; height: 56px" src="./assets/img/3.png"/></ng-template>
+      <ng-template #action3>
+        <i nz-tooltip nzTooltipTitle="监测指标" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'报警'" [bordered]="true" [total]="indexCount.warningCount?indexCount.warningCount:'0'" contentHeight="30px"  
+      [avatar]="avatar4" [action]="action4" (click)="toPage(4)">
+      <ng-template #avatar4><img style="width:56px; height: 56px" src="./assets/img/4.png"/></ng-template>
+      <ng-template #action4>
+        <i nz-tooltip nzTooltipTitle="报警" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+</div>
+
+<div nz-row [nzGutter]="24" class="margin-left-0 margin-right-0">
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12">
+    <nz-card nzTitle="监测点"  class="sales-card mb-0" [nzBordered]="false" style="min-height: 580px">
+        <img style="width:100%; height:580px" src="./assets/img/bg.jpg"/>
+    </nz-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12">
+      <nz-card nzTitle="项目信息"  class="sales-card mb-0" [nzBordered]="false" style="min-height:150px">
+        <p style="line-height: 25px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;视频AI位于房县城南17公里的野人谷镇谭家湾村，是一座以灌溉、防洪为主，兼顾发电等综合利用的中型水库，水库坝顶高程553.00米，坝顶宽度6.0米，坝顶长度386.9米，最大坝高47.6米，总库容为1037万立方米，兴利库容875万立方米，调洪库容334万立方米，死库容为21万立方米，该水库于2012年完成了水库除险加固工程施工，工程等别为Ⅲ等，视频AI的汛期防洪限制水位为545米，设计洪水位为550.72米。
+        </p>
+      </nz-card>
+      <nz-card nzTitle="实时数据"  class="sales-card mb-0" [nzBordered]="false" style="min-height:200px">
+          <st [data]="tableData" [columns]="searchColumn" size="small" ps="5" [page]="{toTopInChange:false}">
+              <ng-template st-row="status" let-i>
+                  <nz-badge [nzStatus]="i.statusType" [nzText]="i.statusText"></nz-badge>
+                </ng-template>
+            </st>
+      </nz-card>
+      <nz-card nzTitle="设备指标"  class="sales-card mb-0" [nzBordered]="false" style="min-height:290px">
+        <!-- <g2-pie *ngIf="salesPieData" [data]="salesPieData" [hasLegend]="true" [subTitle]="'设备指标'" [height]="248" [lineWidth]="4" [total]="salesTotal"
+          [valueFormat]="handlePieValueFormat">
+        </g2-pie> -->
+        <g2-water-wave [title]="'上线设备'" [percent]="100" [height]="200"></g2-water-wave>
+      </nz-card>
+  </div>
+</div>

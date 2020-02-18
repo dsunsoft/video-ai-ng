@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <div class="modal-title">选择打印机</div>
+</div>
+<div class="modal-body">
+    <form nz-form #form="ngForm" se-container="1" size="compact" labelWidth="130" gutter="32">
+        <se label="快递单打印机" required>
+            <nz-select [(ngModel)]="query.printer" name="printer" id="printer" [nzPlaceHolder]="'请选择'"
+                [nzAllowClear]="true" style="width: 300px;" required>
+                <nz-option *ngFor="let i of printer;" [nzLabel]="i" [nzValue]="i"></nz-option>
+            </nz-select>
+        </se>
+    </form>
+</div>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">关闭</button>
+    <button nz-button type="button" [nzType]="'primary'" (click)="submit()" [disabled]="!form.valid">确认</button>
+</div>

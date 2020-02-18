@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <div class="modal-title">导入数据</div>
+</div>
+<div class="modal-body">
+    <nz-upload [(nzFileList)]="fileList" [nzLimit]="1" [nzFilter]="filters" [nzBeforeUpload]="beforeUpload"
+        [nzSize]="nzSize">
+        <button nz-button>
+            <i nz-icon type="upload"></i>
+            <span>导入</span>
+        </button>
+        <span> 导入文件不能超过5M，仅允许导入"xls"或"xlsx"格式文件！</span>
+    </nz-upload>
+</div>
+<div class="modal-footer">
+    <a href="{{query.templateUrl}}" style=" margin-right:8px;"><button nz-button type="button"
+            [nzType]="'default'"><i nz-icon type="download"></i>下载模板</button></a>
+    <button nz-button type="button" [nzType]="'primary'" [nzLoading]="uploading"
+        (click)="handleUpload()" [disabled]="fileList.length == 0">上传</button>
+    <button nz-button type="button" (click)="close()">关闭</button>
+</div>

@@ -1,0 +1,36 @@
+<page-header [title]="'用户信息'"></page-header>
+<nz-card [nzBordered]="false">
+  <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+    <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+          <nz-form-item>
+            <nz-form-label nzFor="loginName">用户名</nz-form-label>
+            <nz-form-control>
+              <input nz-input [(ngModel)]="query.loginName" name="loginName" placeholder="请输入" id="loginName">
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+          <nz-form-item>
+            <nz-form-label nzFor="name">姓名</nz-form-label>
+            <nz-form-control>
+              <input nz-input [(ngModel)]="query.name" name="name" placeholder="请输入" id="name">
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+          <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+          <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+        </nz-col>
+      </nz-row>
+  </form>
+  <button nz-button (click)="add()" [nzType]="'primary'">
+    <i nz-icon type="plus"></i>
+    <span>新建</span>
+  </button>
+  <st #st [columns]="columns" [data]="data" [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE"
+    [loading]="loading" (change)="stChange($event)" [scroll]="{y:'550px'}" >
+  </st>
+</nz-card>

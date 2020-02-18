@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <div class="modal-title">设备信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <!-- <se label="父级菜单" required col="1">
+    <input type="hidden" nz-input [(ngModel)]="device.pid" name="pid"  required>
+    <input type="text" nz-input [(ngModel)]="device.pname" name="pname" disabled readonly required>
+  </se> -->
+  <se label="设备编号" required col="1">
+    <input type="text" nz-input [(ngModel)]="device.deviceNo" name="deviceNo" required>
+  </se>
+  <se label="设备名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="device.deviceName" name="deviceName" required>
+  </se>
+  <se label="设备类型" required col="1">
+    <nz-select  [(ngModel)]="device.deviceType" name="deviceType"
+    nzAllowClear nzPlaceHolder="请选择" id="deviceType" required >
+    <nz-option *ngFor="let op of DEVICE_TYPE;" [nzValue]="op.value" [nzLabel]="op.text"></nz-option>
+    </nz-select>
+  </se>
+  <se label="经度" required col="1">
+    <input type="text" nz-input [(ngModel)]="device.lng" name="lng" required>
+  </se>
+  <se label="纬度" required col="1">
+    <input type="text" nz-input [(ngModel)]="device.lat" name="lat" required>
+  </se>
+  <se label="设备海拔" required col="1">
+    <input type="text" nz-input [(ngModel)]="device.elevation" name="elevation" required>
+  </se>
+  <se label="最近一次连接时间" required col="1">
+    <nz-date-picker name="connDate" id="connDate" [nzPlaceHolder]="'连接时间'" [(ngModel)]="device.connDate"
+    nzFormat="yyyy-MM-dd HH:mm:ss"></nz-date-picker>
+  </se>
+  <se label="设备IP" col="1">
+    <input type="text" nz-input [(ngModel)]="device.deviceIP" name="deviceIP">
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

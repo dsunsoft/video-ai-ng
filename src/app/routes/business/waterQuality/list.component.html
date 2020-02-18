@@ -1,0 +1,103 @@
+<!-- <page-header [title]="'实时数据'"></page-header> -->
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24">
+        <form nz-form [nzLayout]="'inline'" (ngSubmit)="search()" class="search__form">
+            <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }" class="margin-left-0 margin-right-0">
+                <nz-col nzSm="24" nzMd="24" nzLg="24" nzXl="12" nzXXl="8" class="padding-left-035 padding-right-035">
+                  <nz-form-item>
+                    <button nz-button type="button" [nzType]="query.type == 1?'primary':'default'" [nzLoading]="loading" (click)="setTime(1)">过去一小时</button>
+                    <button nz-button type="button" [nzType]="query.type == 2?'primary':'default'" [nzLoading]="loading" (click)="setTime(2)">过去一天</button>
+                    <button nz-button type="button" [nzType]="query.type == 3?'primary':'default'" [nzLoading]="loading" (click)="setTime(3)">过去一周</button>
+                    <button nz-button type="button" [nzType]="query.type == 4?'primary':'default'" [nzLoading]="loading" (click)="setTime(4)">过去一个月</button>
+                  </nz-form-item>
+                </nz-col>
+                <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+                  <nz-form-item>
+                    <nz-form-label nzFor="startTime">上报时间</nz-form-label>
+                    <nz-form-control>
+                      <nz-date-picker name="startTime" id="startTime" nzFormat="yyyy-MM-dd HH:mm:ss" [nzPlaceHolder]="'开始'"
+                        [(ngModel)]="query.startTime"></nz-date-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+                </nz-col>
+                <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+                  <nz-form-item>
+                    <nz-form-label nzFor="endTime">至</nz-form-label>
+                    <nz-form-control>
+                      <nz-date-picker name="endTime" id="endTime" nzFormat="yyyy-MM-dd HH:mm:ss" [nzPlaceHolder]="'结束'"
+                        [(ngModel)]="query.endTime"></nz-date-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+                </nz-col>
+                <nz-col nzSm="24" nzMd="12" nzLg="12" nzXl="12" nzXXl="8">
+                    <nz-form-item>
+                      <nz-form-label nzFor="deviceType">设备类型</nz-form-label>
+                      <nz-form-control>
+                        <nz-select  [nzMode]="'multiple'" [(ngModel)]="query.deviceType" name="deviceType"
+                         nzAllowClear nzPlaceHolder="请选择" id="deviceType" [nzMaxTagCount]="3"
+                         (ngModelChange)="resetColumns()">
+                          <nz-option *ngFor="let op of DEVICE_RANGE_TYPE;" [nzValue]="op.value" [nzLabel]="op.text"></nz-option>
+                          <!-- <ng-container *ngFor="let op of DEVICE_RANGE_TYPE">
+                            <nz-option [nzLabel]="op.text" [nzValue]="op.value" *ngIf="isNotSelected(op.value)"></nz-option>
+                          </ng-container> -->
+                        </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </nz-col>
+                <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+                  <nz-form-item>
+                    <nz-form-label nzFor="deviceNo">设备编码</nz-form-label>
+                    <nz-form-control>
+                      <input nz-input [(ngModel)]="query.deviceNo" name="deviceNo" placeholder="请输入" id="deviceNo">
+                    </nz-form-control>
+                  </nz-form-item>
+                </nz-col>
+                <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+                  <nz-form-item>
+                    <nz-form-label nzFor="deviceName">设备名称</nz-form-label>
+                    <nz-form-control>
+                      <input nz-input [(ngModel)]="query.deviceName" name="deviceName" placeholder="请输入" id="deviceName">
+                    </nz-form-control>
+                  </nz-form-item>
+                </nz-col>
+                <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+                  <nz-form-item>
+                    <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+                    <!-- <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button> -->
+                  </nz-form-item>
+                </nz-col>
+            </nz-row>
+      </form>
+      <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <nz-col nzSm="24" nzMd="24" nzLg="24" nzXl="24" nzXXl="24">
+            <div echarts [options]="options"></div>
+          </nz-col>
+      </nz-row>
+      
+      <!-- <button nz-button (click)="add()" [nzType]="'primary'">
+        <i nz-icon type="plus"></i>
+        <span>新建</span>
+      </button> -->
+      <!-- <button nz-button (click)="st.export(exportData, { filename: '实时数据.xlsx', sheetname: '实时数据' })" [nzType]="'primary'">
+        <i nz-icon type="file-excel"></i>
+        <span>导出</span>
+      </button> -->
+      <!-- <ng-container *ngIf="selectedRows.length > 0">
+        <button nz-button>批量操作</button>
+        <nz-dropdown [nzPlacement]="'bottomLeft'">
+          <button nz-button nz-dropdown>
+            更多操作
+            <i nz-icon type="down"></i>
+          </button>
+          <ul nz-menu>
+            <li nz-menu-item (click)="del()">删除</li>
+          </ul>
+        </nz-dropdown>
+      </ng-container> -->
+      <st #st [columns]="columns" [data] ="data"  [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE" [loading]="loading" (change)="stChange($event)"
+        >
+      </st>
+    </nz-col>
+  </nz-card>
+</div>

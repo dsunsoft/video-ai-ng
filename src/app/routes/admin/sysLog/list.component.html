@@ -1,0 +1,71 @@
+<page-header [title]="'系统日志'"></page-header>
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24" nzXl="24" nzXXl="24">
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+        <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="title">操作菜单</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.title" name="title" placeholder="请输入" id="title">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3">
+            <nz-form-item>
+              <nz-form-label nzFor="operBy">操作用户</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.operBy" name="operBy" placeholder="请输入" id="operBy">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+            <nz-form-item>
+              <nz-form-label nzFor="date">创建时间</nz-form-label>
+              <nz-form-control>
+                <nz-date-picker name="beginDate" id="beginDate" [nzPlaceHolder]="'开始'"
+                  [(ngModel)]="query.beginDate" nzFormat="yyyy-MM-dd"></nz-date-picker>
+              </nz-form-control>
+              <nz-form-label nzFor="date">至</nz-form-label>
+              <nz-form-control>
+                <nz-date-picker name="endDate" id="endDate" [nzPlaceHolder]="'结束'" [(ngModel)]="query.endDate"
+                  nzFormat="yyyy-MM-dd"></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <!-- <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="requestUri">URI</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.requestUri" name="requestUri" placeholder="请输入" id="orderNo">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col> -->
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3">
+            <nz-form-item>
+              <nz-form-label  nzFor="showEx">只查询异常信息</nz-form-label>
+              <nz-form-control >
+                <label nz-checkbox [(ngModel)]="showEx" name = "ex" id="ex"></label>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+            <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+              <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+      </form>
+      <st #st [columns]="columns" [data]="data" [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total"
+        [scroll]="scroll" [loading]="loading" [page]="ST_PAGE" (change)="stChange($event)">
+        <ng-template st-row="exception" let-i>
+          <span nz-tooltip [nzTitle]="i.longException" nzPlacement="right">{{i.exception}}</span>
+        </ng-template>
+      </st>
+    </nz-col>
+  </nz-card>
+</div>

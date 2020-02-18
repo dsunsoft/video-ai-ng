@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <div class="modal-title">视频信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="设备序列号" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.deviceId" name="deviceId" readonly required>
+  </se>
+  <se label="通道号" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.channelId" name="channelId" readonly required>
+  </se>
+  <se label="直播状态（1：开启；2：暂停；3：流量不足）" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.liveStatus" name="liveStatus" readonly required>
+  </se>
+  <se label="直播授权token" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.liveToken" name="liveToken" readonly required>
+  </se>
+  <se label="直播源类型（1：设备；2：流地址）" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.liveType" name="liveType" readonly required>
+  </se>
+  <se label='直播类型（"cdn":通用直播；"proxy":经济型直播）' col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.liveMode" name="liveMode" readonly required>
+  </se>
+  <se label="任务周期" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.period" name="period" readonly >
+  </se>
+  <se label="直播计划状态（true:开；false:关）" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.status" name="status" readonly >
+  </se>
+  <se label="视频封面更新频率（单位：s）" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.coverUpdate" name="coverUpdate" readonly >
+  </se>
+  <se label="封面图片地址" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.coverUrl" name="coverUrl" readonly >
+  </se>
+  <se label="直播流hls访问地址" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.hls" name="hls" readonly >
+  </se>
+  <se label="码流类型（0:主码流；1:辅码流）(当直播地址由rtsp源生成时，无该字段)" required col="1">
+    <input type="text" nz-input [(ngModel)]="videoStation.streamId" name="streamId" readonly >
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

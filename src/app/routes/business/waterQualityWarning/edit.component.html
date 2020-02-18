@@ -1,0 +1,35 @@
+<!--
+/**
+ * 描述:[water_quality_warning][水质超指标预警详细记录]表的新增或修改页面
+ * @version:1.0.0
+ * @author:  administrator
+ * @创建时间: ${date}
+ */
+-->
+<div class="modal-header">
+  <div class="modal-title">水质超指标预警详细记录</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="指标编码" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityWarning.code" name="code" required>
+  </se>
+  <se label="指标名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityWarning.name" name="name" required>
+  </se>
+  <se label="指标单位" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityWarning.unit" name="unit" required>
+  </se>
+  <se label="数据时间" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityWarning.time" name="time" required>
+  </se>
+  <se label="数据值" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityWarning.value" name="value" required>
+  </se>
+  <se label="备注信息" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityWarning.remarks" name="remarks" required>
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

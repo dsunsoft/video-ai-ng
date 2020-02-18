@@ -1,0 +1,48 @@
+<page-header [title]="'角色管理'"></page-header>
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24">
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+        <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="roleName">角色名称</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.roleName" name="roleName" placeholder="请输入" id="roleName">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+            <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+            <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+      </form>
+      <button nz-button (click)="add()" [nzType]="'primary'">
+        <i nz-icon type="plus"></i>
+        <span>新建</span>
+      </button>
+      <!-- <button nz-button (click)="st.export(exportData, { filename: '角色管理.xlsx', sheetname: '角色管理' })" [nzType]="'primary'">
+        <i nz-icon type="file-excel"></i>
+        <span>导出</span>
+      </button> -->
+      <!-- <ng-container *ngIf="selectedRows.length > 0">
+        <button nz-button>批量操作</button>
+        <nz-dropdown [nzPlacement]="'bottomLeft'">
+          <button nz-button nz-dropdown>
+            更多操作
+            <i nz-icon type="down"></i>
+          </button>
+          <ul nz-menu>
+            <li nz-menu-item (click)="del()">删除</li>
+          </ul>
+        </nz-dropdown>
+      </ng-container> -->
+      <st #st [columns]="columns" [data] ="data"  [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE" [loading]="loading" (change)="stChange($event)"
+        >
+      </st>
+    </nz-col>
+  </nz-card>
+</div>

@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <div class="modal-title">选择用户</div>
+</div>
+<div class="modal-body">
+  <div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+    <nz-card [nzBordered]="false">
+      <nz-col nzLg="24" nzMd="24" nzSm="24" nzXl="24" nzXXl="24">
+        <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+          <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+            <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+              <nz-form-item>
+                <nz-form-label nzFor="loginName">登录名</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]="query.loginName" name="loginName" placeholder="请输入" id="loginName">
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6">
+              <nz-form-item>
+                <nz-form-label nzFor="name">姓名</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]="query.name" name="name" placeholder="请输入" id="name">
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="6" [class.text-right]="true">
+              <nz-form-item>
+                <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+                <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+        </form>
+        <st #st [columns]="columns" [data]="data" [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE"
+          [loading]="loading" (change)="stChange($event)" [scroll]="{ y: '450px' }">
+          <ng-template st-row="status" let-i>
+            <nz-badge [nzStatus]="i.statusType" [nzText]="i.statusText"></nz-badge>
+          </ng-template>
+        </st>
+
+      </nz-col>
+    </nz-card>
+  </div>
+</div>
+<div class="modal-footer">
+  <button nz-button (click)="save()" [nzType]="'primary'"
+    [disabled]="selectedRows == null || (selectedRows != null && selectedRows.length == 0)">
+    <span>确定</span>
+  </button>
+  <button nz-button (click)="close()">
+    <span>关闭</span>
+  </button>
+</div>

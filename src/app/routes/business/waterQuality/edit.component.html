@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <div class="modal-title">实时数据信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="设备编号" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.deviceNo" name="deviceNo" required>
+  </se>
+  <se label="设备名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.deviceName" name="deviceName" required>
+  </se>
+  <se label="上报时间" required col="1">
+    <nz-date-picker name="time" id="time" [nzPlaceHolder]="'上报时间'" [(ngModel)]="waterQuality.time"
+    nzFormat="yyyy-MM-dd HH:mm:ss"></nz-date-picker>
+  </se>
+  <se label="溶解氧（mg/l）" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.dissolvedOxygen" name="dissolvedOxygen" required>
+  </se>
+  <se label="浊度（NTU）" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.turbidity" name="turbidity" required>
+  </se>
+  <se label="电导率（mS/cm）" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.conductivity" name="conductivity" required>
+  </se>
+  <se label="叶绿素（cells/mL）" col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.chlorophyll" name="chlorophyll">
+  </se>
+
+  <se label="化学需氧量（mg/m³）" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.chemicalOxygen" name="chemicalOxygen" required>
+  </se>
+  <se label="酸碱度（ph）" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.ph" name="ph" required>
+  </se>
+  <se label="氨氮（μg/l）" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.ammoniaNitrogen" name="ammoniaNitrogen" required>
+  </se>
+  <se label="温度（℃）" col="1">
+    <input type="text" nz-input [(ngModel)]="waterQuality.temperature" name="temperature">
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

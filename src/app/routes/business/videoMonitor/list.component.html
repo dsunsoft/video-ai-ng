@@ -1,0 +1,51 @@
+<!-- <page-header [title]="'视频监控'"></page-header> -->
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24">
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+        <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+              <nz-form-item>
+                <nz-form-label nzFor="deviceId">设备序列号</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]="query.deviceId" name="deviceId" placeholder="请输入" id="deviceId">
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+              <nz-form-item>
+                <nz-form-label nzFor="channelId">设备通道号</nz-form-label>
+                <nz-form-control>
+                  <input nz-input [(ngModel)]="query.channelId" name="channelId" placeholder="请输入" id="channelId">
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+            <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+            <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+      </form>
+      <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+        <nz-col *ngFor="let item of data" nzSm="24" nzMd="12" nzLg="12" nzXl="12" nzXXl="12" style="padding-left: 10px !important;padding-right: 10px !important;">
+          <div id="video{{item.id}}"  class="video"></div>
+        </nz-col>
+        <!-- <div *ngFor="let item of data" id="video{{item.id}}"  class="video"></div> -->
+        <!-- <span *ngFor="let item of data">
+          <div id="video{{item.id}}"  class="video"></div>
+        </span> -->
+        <!-- <div *ngFor="let item of data">
+          <div id="video{{item.id}}" class="video"></div>
+        </div> -->
+      </nz-row>
+      <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+        <div class="video-page">
+          <nz-pagination [nzPageSizeOptions]="nzPageSizeOptions" [nzPageIndex]="query.pageIndex" [nzTotal]="query.total" nzShowSizeChanger [nzPageSize]="query.pageSize"
+          (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+        </div>
+      </nz-row>
+    </nz-col>
+  </nz-card>
+</div>

@@ -1,0 +1,44 @@
+<!--
+/**
+ * 描述:[water_quality_range][水质指标正常范围]表的新增或修改页面
+ * @version:1.0.0
+ * @author:  administrator
+ * @创建时间: ${date}
+ */
+-->
+<div class="modal-header">
+  <div class="modal-title">水质指标正常范围</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="指标编码" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.code" name="code" required>
+  </se>
+  <se label="指标名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.name" name="name" required>
+  </se>
+  <se label="指标单位" required col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.unit" name="unit" required>
+  </se>
+  <se label="指标正常范围类型" required col="1">
+    <nz-select  [(ngModel)]="waterQualityRange.rangeType" name="rangeType"
+          nzAllowClear nzPlaceHolder="请选择" id="rangeType" required (ngModelChange)="rangeChange($event)">
+      <nz-option *ngFor="let op of WATER_QUALITY_RANGE_TYPE;" [nzValue]="op.value" [nzLabel]="op.text"></nz-option>
+    </nz-select>
+  </se>
+  <se label="最大值"  col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.max" name="max" >
+  </se>
+  <se label="最小值"  col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.min" name="min" >
+  </se>
+  <se label="其他"  col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.other" name="other" >
+  </se>
+  <se label="备注信息"  col="1">
+    <input type="text" nz-input [(ngModel)]="waterQualityRange.remarks" name="remarks" >
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

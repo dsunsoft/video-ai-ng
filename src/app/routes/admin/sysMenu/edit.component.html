@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <div class="modal-title">菜单信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="父级菜单" required col="1">
+    <input type="hidden" nz-input [(ngModel)]="sysMenu.pid" name="pid"  required>
+    <input type="text" nz-input [(ngModel)]="sysMenu.pname" name="pname" disabled readonly required>
+  </se>
+  <se label="菜单名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysMenu.menuName" name="menuName" required>
+  </se>
+  <se label="菜单图标" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysMenu.icon" name="icon" required>
+  </se>
+  <se label="访问地址" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysMenu.path" name="path" required>
+  </se>
+  <se label="排序" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysMenu.orderIndex" name="orderIndex" required>
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

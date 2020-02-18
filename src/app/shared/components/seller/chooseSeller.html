@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <div class="modal-title">客户信息</div>
+</div>
+<div class="modal-body">
+    <div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+        <nz-card [nzBordered]="false">
+            <nz-col nzLg="24" nzMd="24" nzSm="24" nzXl="24" nzXXl="24">
+                <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+                    <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 24 ,xxl: 24}">
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="8" nzXXl="8">
+                            <nz-form-item>
+                                <nz-form-label nzFor="sellerName">客户组名</nz-form-label>
+                                <nz-form-control>
+                                    <!-- <input nz-input [(ngModel)]="query.sellerName" name="sellerName" placeholder="请输入" id="sellerName"> -->
+                                    <selectSellerOrg [(orgId)]="query.orgId" name="orgId" id="orgId" (onSelectChange)="sellerOrgChange($event)"></selectSellerOrg>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="8" nzXXl="8">
+                            <nz-form-item>
+                                <nz-form-label nzFor="sellerName">客户名称</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input [(ngModel)]="query.sellerName" name="sellerName" placeholder="请输入" id="sellerName">
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="8" nzXXl="8">
+                            <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+                            <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+                        </nz-col>
+                    </nz-row>
+                </form>
+                <st #st [columns]="columns" [data]="data" [pi]="query.pageIndex" [ps]="query.pageSize" [total]="query.total" [page]="ST_PAGE"
+                    [loading]="loading" (change)="stChange($event)">
+                </st>
+            </nz-col>
+        </nz-card>
+    </div>
+</div>
+<div class="modal-footer">
+    <button nz-button type="button" (click)="close()">关闭</button>
+    <button nz-button type="button" [nzType]="'primary'" (click)="submit()" [disabled]="selectedRows == null || (selectedRows != null && selectedRows.length == 0)">确认</button>
+</div>

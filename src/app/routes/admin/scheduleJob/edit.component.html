@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <div class="modal-title">定时任务信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <se label="任务名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="scheduleJob.name" name="name" required>
+  </se>
+  <!-- <se label="任务组" required col="1">
+    <input type="text" nz-input [(ngModel)]="scheduleJob.group" name="group" required>
+  </se> -->
+  <se label="定时规则" required col="1">
+    <input type="text" nz-input [(ngModel)]="scheduleJob.cronExpression" name="cronExpression" required>
+  </se>
+  <se label="启用状态" required col="1">
+    <nz-select [(ngModel)]="scheduleJob.status" name="status" id="status" [nzPlaceHolder]="'请选择'" [nzAllowClear]="true"
+      required>
+      <nz-option *ngFor="let i of statusList; let idx = index" [nzLabel]="i.text" [nzValue]="i.value"></nz-option>
+    </nz-select>
+  </se>
+  <!-- <se label="事件触发时通知用户" col="1">
+    <input type="text" nz-input [(ngModel)]="scheduleJob.isInfo" name="isInfo">
+  </se> -->
+  <se label="任务类" required col="1">
+    <input type="text" nz-input [(ngModel)]="scheduleJob.className" name="className" required>
+  </se>
+  <se label="描述" col="1">
+    <input type="text" nz-input [(ngModel)]="scheduleJob.description" name="description">
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>

@@ -1,0 +1,78 @@
+<page-header [title]="'机构管理'"></page-header>
+<div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+  <nz-card [nzBordered]="false">
+    <nz-col nzLg="24" nzMd="24" nzSm="24">
+      <form nz-form [nzLayout]="'inline'" (ngSubmit)="load()" class="search__form">
+        <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="4">
+            <nz-form-item>
+              <nz-form-label nzFor="name">机构名称</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="query.name" name="name" placeholder="请输入" id="name">
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="6" nzXXl="3" [class.text-right]="true">
+            <nz-form-item>
+              <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+              <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+      </form>
+      <button nz-button (click)="add()" [nzType]="'primary'">
+        <i nz-icon type="plus"></i>
+        <span>新增</span>
+      </button>
+      <nz-table #expandTable [nzData]="listOfMapData">
+        <thead>
+          <tr>
+            <th>机构名称</th>
+            <th>归属区域</th>
+            <th>机构编码</th>
+            <th>机构类型</th>
+            <th>机构级别</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let data of expandTable.data">
+            <ng-container *ngFor="let item of mapOfExpandedData[data.data.id]">
+              <tr *ngIf="item.parent && item.parent.expand || !item.parent">
+                <td [nzIndentSize]="item.level * 20" [nzShowExpand]="!!item.children && item.children.length>0"
+                  [(nzExpand)]="item.expand" (nzExpandChange)="collapse(mapOfExpandedData[data.data.id],item,$event)">
+                  {{item.label}}
+                </td>
+                <td>{{item.data.areaName}}</td>
+                <td>
+                  {{item.data.code}}
+                </td>
+                <td>
+                  {{item.data.typeLabel}}
+                </td>
+                <td>
+                  {{item.data.gradeLabel}}
+                </td>
+                <td>
+                  <span>
+                    <a class="ng-star-inserted" (click)="edit(item)">
+                      <span ng-reflect-ng-class="[object Object]" class="ng-star-inserted">修改</span>
+                    </a>
+                    <span class="ant-divider ant-divider ant-divider-vertical ng-star-inserted"></span>
+                    <a class="ng-star-inserted" (click)="del(item)">
+                      <span ng-reflect-ng-class="[object Object]" class="ng-star-inserted">删除</span>
+                    </a>
+                    <span class="ant-divider ant-divider ant-divider-vertical ng-star-inserted"></span>
+                    <a class="ng-star-inserted" (click)="add(item)">
+                      <span ng-reflect-ng-class="[object Object]" class="ng-star-inserted">新增下级机构</span>
+                    </a>
+                  </span>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </nz-table>`
+    </nz-col>
+  </nz-card>
+</div>

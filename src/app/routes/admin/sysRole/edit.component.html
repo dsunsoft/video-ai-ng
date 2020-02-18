@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <div class="modal-title">角色信息</div>
+</div>
+<form nz-form #form="ngForm" se-container size="compact" gutter="24">
+  <!-- <se label="父级菜单" required col="1">
+    <input type="hidden" nz-input [(ngModel)]="sysRole.pid" name="pid"  required>
+    <input type="text" nz-input [(ngModel)]="sysRole.pname" name="pname" disabled readonly required>
+  </se> -->
+  <se label="角色名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysRole.roleName" name="roleName" required>
+  </se>
+  <se label="英文名称" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysRole.roleCode" name="roleCode" required>
+  </se>
+  <se label="角色类型" required col="1">
+    <input type="text" nz-input [(ngModel)]="sysRole.roleType" name="roleType" required>
+  </se>
+  <se label="角色描述" col="1">
+    <input type="text" nz-input [(ngModel)]="sysRole.roleDesc" name="roleDesc">
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" [nzType]="'primary'" (click)="save()" [disabled]="!form.valid">保存</button>
+</div>
